@@ -42,8 +42,10 @@ def check(request):
     if len(other_positions) < len(user_positions):
         other_positions, user_positions = user_positions, other_positions
 
+    # for all gps position, increment times if distance < 100
     for pos in range(len(user_positions)):
-        if get_distance(user_positions[pos], other_positions[pos]) < 100: times += 1 
+        if get_distance(user_positions[pos], other_positions[pos]) < 100:
+            times += 1 
             
     # HttpResponse return
     return Response({
@@ -51,3 +53,4 @@ def check(request):
         "other": other.full_name,
         "times": times
     })
+
